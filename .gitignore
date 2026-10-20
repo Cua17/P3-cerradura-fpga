@@ -1,0 +1,32 @@
+# Guiones de video (privados, no se publican)
+guiones/
+
+# Material de referencia del profesor (no es mio, no se publica)
+referencia-profesor/
+
+# Nota privada sobre Synopsys (pendiente de consultar con el profesor)
+docs/00-synopsys-pendiente.md
+
+# Todo lo que genera Vivado al sintetizar/implementar/programar (regenerable)
+vivado_build/
+sim/work/
+*.jou
+*.log
+*.pb
+*.str
+*.backup.log
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+.Xil/
+webtalk*
+usage_statistics_webtalk.*
+clockInfo.txt
+*.dcp
+*.wcfg
+
+# Basura del sistema
+.DS_Store
+Thumbs.db
