@@ -1,5 +1,9 @@
-# Guiones de video (privados, no se publican)
+# Guiones y archivos de video (privados, no se publican / se suben a mano a YouTube)
 guiones/
+video/
+*.mp4
+*.mkv
+*.mov
 
 # Material de referencia del profesor (no es mio, no se publica)
 referencia-profesor/
