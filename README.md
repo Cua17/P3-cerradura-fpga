@@ -47,6 +47,11 @@ img/          capturas de datasheets, diagramas, waveform de la simulación
 - **Programar la Basys3**: con la placa conectada, ver las instrucciones en
   [`docs/04-basys3.md`](docs/04-basys3.md).
 
+## Video
+
+Explicación completa del parcial — timing, HDL, simulación, Vivado y demostración en la
+Basys3: https://youtu.be/9dUmtvlsK-4
+
 ## Herramientas usadas
 
 - **Vivado 2026.1** (AMD/Xilinx) para síntesis, implementación, simulación por línea de

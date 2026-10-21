@@ -119,6 +119,23 @@
     font-size: 0.85rem;
   }
 
+  .video-frame {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+  }
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   pre.tree {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -199,6 +216,13 @@
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section id="video">
+      <h2>Video</h2>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/9dUmtvlsK-4" title="Parcial 3 — Cerradura electrónica con código PIN" allowfullscreen></iframe>
+      </div>
     </section>
 
     <section id="docs">

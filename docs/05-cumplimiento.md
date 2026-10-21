@@ -15,7 +15,7 @@ este repositorio para cada uno.
 | **2d.** Programar la Basys3 y demostrar | [`docs/04-basys3.md`](04-basys3.md) — bitstream programado y probado en placa real, 3 escenarios confirmados con fotos |
 | **3.** Synopsys | El PDF decía literalmente "TODO"; consultado directamente con el profesor, que indicó que este punto queda excluido del parcial |
 | **Entregable.** Repo de GitHub con landing | [`index.html`](../index.html), repo público en GitHub Pages |
-| **Entregable.** Video por inciso explicando el experimento | El profesor aclaró que es un solo video (<10 min) cubriendo todos los incisos — guion en `guiones/guion_video.md` (no publicado, fuera del repo) |
+| **Entregable.** Video explicando el experimento | El profesor aclaró que es un solo video (<10 min) cubriendo todos los incisos — [youtu.be/9dUmtvlsK-4](https://youtu.be/9dUmtvlsK-4) (6:01), enlazado en el README y en la landing |
 
 ## Verificación final
 
@@ -34,3 +34,6 @@ este repositorio para cada uno.
   script independiente antes de pasarlo al documento.
 - **Landing y enlaces:** ver [`index.html`](../index.html); los enlaces a los documentos
   y al repositorio apuntan a rutas reales del repo.
+- **Video:** publicado en YouTube (oculto, no privado) en
+  [youtu.be/9dUmtvlsK-4](https://youtu.be/9dUmtvlsK-4), 6:01 de duración, enlazado desde
+  el README y embebido en la landing.
