@@ -4,9 +4,6 @@ guiones/
 # Material de referencia del profesor (no es mio, no se publica)
 referencia-profesor/
 
-# Nota privada sobre Synopsys (pendiente de consultar con el profesor)
-docs/00-synopsys-pendiente.md
-
 # Todo lo que genera Vivado al sintetizar/implementar/programar (regenerable)
 vivado_build/
 sim/work/

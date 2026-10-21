@@ -13,7 +13,7 @@ este repositorio para cada uno.
 | **2b.** Testbench + simulación en Vivado | [`sim/testbench.sv`](../sim/testbench.sv) — 35/35 PASS, sin warnings (`xvlog`/`xelab`/`xsim`), waveform real en [`docs/02-hdl.md`](02-hdl.md) |
 | **2c.** Discusión RTL Analysis / Synthesis / Implementation | [`docs/03-vivado.md`](03-vivado.md) — con mis reportes reales (utilización, timing, DRC) |
 | **2d.** Programar la Basys3 y demostrar | [`docs/04-basys3.md`](04-basys3.md) — bitstream programado y probado en placa real, 3 escenarios confirmados con fotos |
-| **3.** Synopsys | El PDF dice literalmente "TODO" — documentado como pendiente de consultar con el profesor, sin publicar (ver nota interna, no versionada) |
+| **3.** Synopsys | El PDF decía literalmente "TODO"; consultado directamente con el profesor, que indicó que este punto queda excluido del parcial |
 | **Entregable.** Repo de GitHub con landing | [`index.html`](../index.html), repo público en GitHub Pages |
 | **Entregable.** Video por inciso explicando el experimento | El profesor aclaró que es un solo video (<10 min) cubriendo todos los incisos — guion en `guiones/guion_video.md` (no publicado, fuera del repo) |
 
