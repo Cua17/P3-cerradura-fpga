@@ -56,3 +56,19 @@ close_hw_target
 ```
 vivado -mode batch -source programar_basys3.tcl
 ```
+
+## 4. Demostración en hardware real
+
+Programé esta Basys3 (serial `210183B81FD8A`, dispositivo detectado como `xc7a35t_0`) con
+`bitstream/p3_cerradura.bit` y probé los tres escenarios clave directamente en la placa
+(nota para quien repita esto: en la Basys3 los LEDs están serigrafiados al revés de lo
+intuitivo — `LD0` es el que está más a la **derecha**, `LD15` el de más a la izquierda).
+
+| Escenario | LEDs esperados | LEDs reales en la placa |
+|---|---|---|
+| Reset | `LD2` (locked) | `LD2` ✓ |
+| 4 dígitos correctos seguidos | `LD0` (unlock) + `LD9` (bit de `Unlocked`=100) | `LD0`, `LD9` ✓ |
+| 3 fallos seguidos | `LD1` (alarm) + `LD4` (wrong) + `LD7`,`LD8` (bits de `Alarm`=011) | `LD1`, `LD4`, `LD7`, `LD8` ✓ |
+
+Los tres coinciden exactamente con lo que predice el testbench y con las tablas de C3 —
+sin diferencias entre la simulación y el hardware real.
