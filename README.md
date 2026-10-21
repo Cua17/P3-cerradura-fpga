@@ -1,5 +1,7 @@
 # P3 — Cerradura electrónica con código PIN, de compuertas a FPGA
 
+**Landing:** https://cua17.github.io/P3-cerradura-fpga/ · **Video:** https://youtu.be/9dUmtvlsK-4
+
 Parcial 3 (parte práctica) de Arquitectura de Computadoras: tomo la FSM que diseñé para
 el Parcial 2 ([C3](https://github.com/Cua17/C3-cerradura-fsm) — `PinChecker` Mealy y
 `LockController` Moore) y la llevo por los tres pasos que pide el parcial: análisis de
