@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P3 — Cerradura electrónica con código PIN, de compuertas a FPGA</title>
+<meta name="description" content="Parcial 3 de Arquitectura de Computadoras: timing con compuertas reales, SystemVerilog, simulación en Vivado y programación en una Basys3.">
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-card: #171a21;
+    --border: #2a2e38;
+    --text: #e7e9ee;
+    --text-dim: #9aa1b2;
+    --accent: #5fb3ff;
+    --accent-2: #7ee2a8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  header.hero h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  header.hero p.lead {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 0 0 20px;
+  }
+  .author {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  main section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+  main section:last-of-type { border-bottom: none; }
+  h2 {
+    font-size: 1.3rem;
+    margin: 0 0 18px;
+  }
+
+  .results {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .results th, .results td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .results th {
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .results td:first-child { color: var(--text); white-space: nowrap; }
+  .pass { color: var(--accent-2); font-family: var(--mono); }
+
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .doc-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .15s ease;
+  }
+  .doc-card:hover { border-color: var(--accent); }
+  .doc-card .num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+  .doc-card h3 {
+    margin: 6px 0 4px;
+    font-size: 1rem;
+  }
+  .doc-card p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  pre.tree {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  pre.tree .dir { color: var(--accent); }
+
+  a.repo-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid transparent;
+  }
+  a.repo-link:hover { border-bottom-color: var(--accent); }
+
+  footer {
+    padding: 32px 0 60px;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Cerradura electrónica con código PIN — de compuertas a FPGA</h1>
+    <p class="lead">
+      Parcial 3 de Arquitectura de Computadoras: tomo la FSM del
+      <a class="repo-link" href="https://github.com/Cua17/C3-cerradura-fsm" style="margin:0;display:inline;">Parcial 2</a>
+      (<code>PinChecker</code> Mealy + <code>LockController</code> Moore) y la llevo por
+      timing con compuertas reales, SystemVerilog con simulación en Vivado, y programación
+      real en una tarjeta Basys3.
+    </p>
+    <p class="author">José Daniel Cuá Fagiani — Carné 21200</p>
+    <div class="badges">
+      <span class="badge">SystemVerilog</span>
+      <span class="badge">Vivado 2026.1</span>
+      <span class="badge">Artix-7 XC7A35T</span>
+      <span class="badge">Basys3</span>
+      <span class="badge">74LVC @ 1.8V</span>
+    </div>
+    <a class="repo-link" href="https://github.com/Cua17/P3-cerradura-fpga">Ver el repositorio →</a>
+  </header>
+
+  <main>
+    <section id="resultados">
+      <h2>Resultados principales</h2>
+      <table class="results">
+        <thead>
+          <tr><th>Parte</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Timing discreto</td>
+            <td>Fc ≈ 15.0 MHz (2× AND3 + 2× OR2 + flip-flop, familia 74LVC a 1.8V), hold cumple con 16.2 ns de margen</td>
+          </tr>
+          <tr>
+            <td>Testbench</td>
+            <td><span class="pass">35/35 PASS</span>, sin warnings (xvlog / xelab / xsim)</td>
+          </tr>
+          <tr>
+            <td>Síntesis + implementación</td>
+            <td>29 LUTs, 35 FFs, WNS = 4.9 ns, WHS = 0.19 ns a 100 MHz (Vivado 2026.1, Artix-7 XC7A35T)</td>
+          </tr>
+          <tr>
+            <td>Hardware</td>
+            <td>Programado y probado en una Basys3 real: reset, PIN correcto, 3 fallos → alarma</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="docs">
+      <h2>Documentación</h2>
+      <div class="doc-grid">
+        <a class="doc-card" href="https://github.com/Cua17/P3-cerradura-fpga/blob/master/docs/01-timing.md">
+          <div class="num">01</div>
+          <h3>Timing</h3>
+          <p>Tramo FF a FF con compuertas reales de Digikey, setup/hold y Fc.</p>
+        </a>
+        <a class="doc-card" href="https://github.com/Cua17/P3-cerradura-fpga/blob/master/docs/02-hdl.md">
+          <div class="num">02</div>
+          <h3>HDL</h3>
+          <p>Jerarquía SystemVerilog, testbench auto-verificable y simulación.</p>
+        </a>
+        <a class="doc-card" href="https://github.com/Cua17/P3-cerradura-fpga/blob/master/docs/03-vivado.md">
+          <div class="num">03</div>
+          <h3>Vivado</h3>
+          <p>RTL Analysis, Synthesis e Implementation con datos reales del proyecto.</p>
+        </a>
+        <a class="doc-card" href="https://github.com/Cua17/P3-cerradura-fpga/blob/master/docs/04-basys3.md">
+          <div class="num">04</div>
+          <h3>Basys3</h3>
+          <p>Mapeo de pines, programación y demostración en hardware real.</p>
+        </a>
+        <a class="doc-card" href="https://github.com/Cua17/P3-cerradura-fpga/blob/master/docs/05-cumplimiento.md">
+          <div class="num">05</div>
+          <h3>Cumplimiento</h3>
+          <p>Tabla punto por punto del parcial con la evidencia de cada requisito.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="estructura">
+      <h2>Estructura del repositorio</h2>
+      <pre class="tree"><span class="dir">src/</span>          mealy.sv, moore.sv, clk_divider.sv, debounce.sv, top.sv
+<span class="dir">sim/</span>          testbench.sv (auto-verificable, 35 checks)
+<span class="dir">constraints/</span>  basys3.xdc
+<span class="dir">bitstream/</span>    p3_cerradura.bit
+<span class="dir">docs/</span>         timing, HDL, discusión de Vivado, Basys3, cumplimiento
+<span class="dir">img/</span>          capturas de datasheets, diagramas, waveform</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>José Daniel Cuá Fagiani — Ingeniería en Electrónica y Telecomunicaciones, Universidad del Istmo.
+    Repositorio: <a href="https://github.com/Cua17/P3-cerradura-fpga">github.com/Cua17/P3-cerradura-fpga</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
